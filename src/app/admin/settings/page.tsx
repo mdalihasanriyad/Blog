@@ -10,7 +10,7 @@ export default async function AdminSettingsPage() {
 
   let settings = await Settings.findOne().lean();
 
-  if (!settings) {
+  if (!settings) { 
     await Settings.create({});
     settings = await Settings.findOne().lean();
   }
