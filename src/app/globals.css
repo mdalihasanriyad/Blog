@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    @apply bg-amber/30 text-ink-900;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink-800 dark:bg-ink-900 dark:text-paper antialiased;
+  }
+
+  /* Visible keyboard focus everywhere — accessibility floor */
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber ring-offset-2 ring-offset-paper dark:ring-offset-ink-900;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Signature element: the reading-progress ribbon under the masthead.
+     Fills left-to-right as the reader scrolls through an article. */
+  .reading-ribbon {
+    @apply fixed left-0 top-0 z-50 h-[3px] w-full origin-left bg-amber;
+    transform: scaleX(var(--reading-progress, 0));
+    transition: transform 80ms linear;
+  }
+
+  /* Press-stamp category badge — a small rotated-corner label */
+  .press-stamp {
+    @apply relative inline-flex items-center gap-1.5 rounded-sm border border-current px-2.5 py-1
+      font-mono text-[11px] uppercase tracking-widest;
+  }
+
+  .link-underline {
+    @apply border-b border-amber/0 transition-colors hover:border-amber/70;
+  }
+
+  .container-editorial {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+}
